@@ -1,26 +1,46 @@
 import hre from "hardhat";
 import { exec } from "child_process";
+import fs from "fs";
+
+const deployOne = async (networkName: string) => {
+  const tags = hre.config.networks[networkName].tags;
+  if (!(tags && tags.includes("deploy"))) {
+    return {
+      level: "info",
+      message: `Skipping ${networkName} because it doesn't have the deploy tag`,
+    };
+  }
+
+  return await new Promise((resolve, reject) => {
+    exec(
+      `npx hardhat deploy --network ${networkName} --export exports/${networkName}.json`,
+      (error, stdout, stderr) => {
+        if (error) {
+          return resolve({
+            level: "error",
+            message: error.message,
+          });
+        }
+
+        resolve({
+          level: "success",
+          message: stdout,
+        });
+      }
+    );
+  });
+};
 
 const main = async () => {
   const networkNames = Object.keys(hre.config.networks);
-  for (const networkName of networkNames) {
-    if (!hre.config.networks[networkName].live) continue;
 
-    await new Promise<void>((resolve, reject) => {
-      console.log(`Deploying to ${networkName}...`);
-      exec(
-        `npx hardhat deploy --network ${networkName} --export exports/${networkName}.json`,
-        (error, stdout, stderr) => {
-          if (error) {
-            console.log(`Error occured: ${networkName}`);
-            return reject(error);
-          }
+  const results = await Promise.all(
+    networkNames.map((networkName) =>
+      deployOne(networkName).then((result) => ({ networkName, result }))
+    )
+  );
 
-          resolve();
-        }
-      );
-    });
-  }
+  fs.writeFileSync("./result.json", JSON.stringify(results, null, 2));
 };
 
 main();
