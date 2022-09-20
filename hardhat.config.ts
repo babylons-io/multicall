@@ -25,7 +25,7 @@ const config: HardhatUserConfig = {
     },
     arbitrumone: {
       chainId: 42161,
-      url: "https://arb1.arbitrum.io/rpc",
+      url: "https://rpc.ankr.com/arbitrum",
       accounts: [...accounts],
       tags: ["deploy"],
     },
@@ -226,7 +226,7 @@ const config: HardhatUserConfig = {
     },
     evmos: {
       chainId: 9001,
-      url: "https://jsonrpc-evmos-ia.notional.ventures",
+      url: "https://eth.bd.evmos.org:8545",
       accounts: [...accounts],
       tags: ["deploy"],
     },

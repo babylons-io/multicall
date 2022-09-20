@@ -66,7 +66,7 @@ const fundAccount = async (
     const txFund = await funderSigner.sendTransaction({
       to: deployerSigner.address,
       value: fundToBe,
-      gasLimit: 21000,
+      //gasLimit: 21000,
     });
     await txFund.wait(1);
   }
