@@ -158,12 +158,12 @@ const config: HardhatUserConfig = {
       accounts: [...accounts],
       tags: ["deploy"],
     },
-    /*fusion: {
+    fusion: {
       chainId: 32659,
-      url: "https://rpcapi.fusionnetwork.io",
+      url: "https://mainnet.anyswap.exchange",
       accounts: [...accounts],
       tags: ["deploy"],
-    },*/
+    },
     celo: {
       chainId: 42220,
       url: "https://forno.celo.org",
@@ -189,8 +189,8 @@ const config: HardhatUserConfig = {
       tags: ["deploy"],
     },
     oasis: {
-      chainId: 26863,
-      url: "https://rpc1.oasischain.io",
+      chainId: 42262,
+      url: "https://emerald.oasis.dev",
       accounts: [...accounts],
       tags: ["deploy"],
     },
