@@ -65,6 +65,12 @@ const config: HardhatUserConfig = {
       accounts: [...accounts],
       tags: ["deploy"],
     },
+    moonriver: {
+      chainId: 1285,
+      url: "https://rpc.api.moonriver.moonbeam.network",
+      accounts: [...accounts],
+      tags: ["deploy"],
+    },
     kcc: {
       chainId: 321,
       url: "https://rpc-mainnet.kcc.network",
