@@ -236,6 +236,12 @@ const config: HardhatUserConfig = {
       accounts: [...accounts],
       tags: ["deploy"],
     },
+    exosama: {
+      chainId: 2109,
+      url: "https://rpc.exosama.com",
+      accounts: [...accounts],
+      tags: ["deploy"],
+    },
   },
   solidity: {
     compilers: [
